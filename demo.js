@@ -352,21 +352,28 @@ function showActor(map,x,y){
     bearsMarker = new H.map.Marker({lat:x, lng: y},
       {icon: bearsIcon});
   
+  
   map.addObject(bearsMarker);
  // }
 
 }
 // Now use the map as required...
 calculateRouteFromAtoB (platform);
+
+
 async function moveActor(map,location){
 showActor(map, location.lat,location.lng);
 }
 var U=0;
 setInterval(function(){
-U+=0.00001 
-  moveActor(map, { 'lat': 37.7647816+U, 'lng': -122.4201818});
+    U+=0.00001;
+    
+    moveActor(map, { 'lat': 37.7647816+U, 'lng': -122.4201818});
 },100);
 
+// setInterval(function(){
+//    console.log(map);
+// },1000);
 //send the path points to server & plot the gems using the resulting points from the server
 // (async () => {
 //   const rawResponse = await fetch('https://hiddengemsapp.herokuapp.com/gems/3', {

@@ -336,8 +336,36 @@ function addGem(map,x,y){
  // }
 
 }
+
+
+function showActor(map,x,y){
+  var svgMarkup = '<svg  width="24" height="24" xmlns="http://www.w3.org/2000/svg">' +
+  '<rect stroke="transparent" fill="${FILL}" x="1" y="1" width="22" height="22" />' +
+  '<text x="12" y="18" font-size="12pt" font-family="Arial" font-weight="bold" ' +
+  'text-anchor="middle" fill="${STROKE}" >👨</text></svg>';
+  //for(var i = 0; i < points.length; i++){
+  
+  
+  // Add the first marker
+  var bearsIcon = new H.map.Icon(
+    svgMarkup.replace('${FILL}', 'transparent').replace('${STROKE}', 'red')),
+    bearsMarker = new H.map.Marker({lat:x, lng: y},
+      {icon: bearsIcon});
+  
+  map.addObject(bearsMarker);
+ // }
+
+}
 // Now use the map as required...
 calculateRouteFromAtoB (platform);
+async function moveActor(map,location){
+showActor(map, location.lat,location.lng);
+}
+var U=0;
+setInterval(function(){
+U+=0.00001 
+  moveActor(map, { 'lat': 37.7647816+U, 'lng': -122.4201818});
+},100);
 
 //send the path points to server & plot the gems using the resulting points from the server
 // (async () => {
